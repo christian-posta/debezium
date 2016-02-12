@@ -42,6 +42,17 @@ Data is often stored in multiple places, especially when it is used for differen
 The [Command Query Responsibility Separation (CQRS)](http://martinfowler.com/bliki/CQRS.html) architectural pattern uses a one data model for updating and one or more other data models for reading. As changes are recorded on the update-side, those changes are then processed and used to update the various read representations. As a result CQRS applications are usually more complicated, especially when they need to ensure reliable and totally-ordered processing. Debezium and CDC can make this more approachable: writes are recorded as normal, but Debezium captures those changes in durable, totally ordered streams that are consumed by the services that asynchronously update the read-only views. The write-side tables can represent domain-oriented entities, or when CQRS is paired with [Event Sourcing](http://martinfowler.com/eaaDev/EventSourcing.html) the write-side tables are the append-only event log of commands.
 
 
+### Event Sourcing
+
+[Event Sourcing](http://martinfowler.com/eaaDev/EventSourcing.html) is a powerful architectural pattern which tracks changes to the domain state and persists both the current state as well as the past log of state changes. With this fundamental assumption we can achieve higher-order application benefits such as:
+
+* Complete Rebuilds of application state from source
+* Historical audit of how things changed
+* Historical and temporal queries
+* Consistency verifications and replays
+
+
+
 
 ## Building Debezium
 
